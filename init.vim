@@ -1,3 +1,530 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
+let g:python4_host_prog = '/usr/local/bin/python3'
+if has('python3')
+    silent! python3 1
+endif
+" Configuration file for vim
+set modelines=0     " CVE-2007-2438
+
+" Normally we use vim-extensions. If you want true vi-compatibility " remove change the following statements
+set nocompatible    " Use Vim defaults instead of 100% vi compatibility
+set backspace=2     " more powerful backspacing
+
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+let skip_defaults_vim=1
+let g:vim_json_conceal=0
+
+set foldmethod=indent
+set foldlevel=99
+set foldenable
+
+" rowNumber
+set nu
+" highLight
+syntax on
+
+set cursorline
+set showcmd
+set wrap
+set wildmenu
+
+let g:indentLine_char = '┆'
+let g:indentLine_enabled = 1
+
+set scrolloff    =7
+
+" tab indent
+set autoindent             " Indent according to previous line.
+set expandtab              " Use spaces instead of tabs.
+set smarttab
+set tabstop      =4
+set shiftwidth   =4        " >> indents by 4 spaces.
+set shiftround             " >> indents to next multiple of 'shiftwidth'.
+
+set softtabstop  =4        " Tab key indents by 4 spaces.
+
+set list
+set listchars=tab:‣\ ,trail:▫,precedes:«,extends:»
+
+" encoding
+set encoding=utf-8
+set hidden
+set nocp
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set relativenumber number
+set timeoutlen=500
+set statusline+=%F
+set laststatus=2
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" mouse yank
+set mouse=a
+
+" indentLine
+let g:indentLine_char = '┆'
+let g:indentLine_enabled = 1
+let g:netrw_keepdir = 0
+let g:netrw_fastbrowse = 0
+
+" ----------------
+"  Theme
+let g:onedark_termcolors=256
+let g:airline_theme='everforest'
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+" Enable true color 启用终端24位色
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+syntax on
+colorscheme everforest
+
+" ----------------
+"  Keybinds
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+let mapleader="\<space>"
+inoremap jj <esc>
+
+" noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
+
+map <up> :res +5<CR>
+map <down> :res -5<CR>
+map <left> :vertical resize -5<CR>
+map <right> :vertical resize +5<CR>
+
+map <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+inoremap <c-k> <c-o>d$
+inoremap <c-d> <c-o>s
+
+map tu :tabe<CR>
+"map gt$ :tabl<CR>
+"map gt0 :tabfir<CR>
+
+map Q :q<CR>
+map W :w<CR>
+
+" noremap <Leader>qq ciw""<Esc>P
+" noremap <Leader>qu di"hPl2x
+" noremap <Leader>qr ciw${}<Esc>P
+" =====================
+" lazygit
+" =====================
+noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+
+" =====================
+" NERDTree 
+" =====================
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree | wincmd p
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+nnoremap \n :NERDTreeFocus<CR>
+nnoremap \t :NERDTreeToggle<CR>
+nnoremap \f :NERDTreeFind<CR>
+
+" =====================
+" FZF.vim
+" =====================
+let g:fzf_buffers_jump=1
+let g:fzf_layout = {'down':'40%'}
+
+imap<c-x><c-k> <plug>(fzf-complete-word)
+imap<c-x><c-f> <plug>(fzf-complete-path)
+imap<c-x><c-l> <plug>(fzf-complete-buffer-line)
+
+command! -nargs=? -bang -complete=dir Files
+        \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
+
+nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>p :Files<CR>
+nnoremap <silent> <leader>P :Files!<CR>
+nnoremap <silent> <leader>t :Tags<CR>
+nnoremap <silent> <leader>w :Buffers<CR>
+nnoremap <silent> <leader>b :BLines<CR>
+nnoremap <silent> <leader>B :Lines<CR>
+nnoremap <silent> <leader>rg :Rg<CR>
+
+"FZF Buffer Delete
+
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
+
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
+
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+\ }))
+
+" =====================
+" Cheat40
+" =====================
+nnoremap <Leader>? :Cheat40
+
+" =====================
+" Tagbar
+" =====================
+nmap <F8> :TagbarToggle<CR>
+
+" YMC
+let g:ycm_use_clangd = 0
+
+" =====================
+" MarkdownPreview
+" =====================
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
+
+let g:mkdp_browser = ''
+let g:mkdp_echo_preview_url = 0
+
+let g:mkdp_browserfunc = ''
+
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0,
+    \ 'toc': {}
+    \ }
+
+let g:mkdp_markdown_css = ''
+
+let g:mkdp_highlight_css = ''
+
+let g:mkdp_port = ''
+
+let g:mkdp_page_title = '「${name}」'
+
+let g:mkdp_filetypes = ['markdown']
+
+let g:mkdp_theme = 'everforest'
+
+
+" =====================
+" NerdTree-git
+" =====================
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+
+" =====================
+" vim-indent-guides
+" =====================
+let g:indent_guides_enable_on_vim_startup = 1
+
+let g:table_mode_relign_map = '<Leader>trr'
+let g:table_mode_delete_column_map = '<Leader>tdcc'
+let g:table_mode_insert_column_before_map = '<Leader>ticC'
+let g:table_mode_insert_column_after_map = '<Leader>ticc'
+
+" =====================
+" vim-signature
+" =====================
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "dm-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "dm/",
+        \ 'PurgeMarkers'       :  "dm?",
+        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevLineAlpha'  :  "",
+        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListLocalMarks'     :  "m/",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+
+" =====================
+" delimitmate
+" =====================
+
+let delimitMate_matchpairs ='(:),[:],{:}'
+
+" =====================
+" vim-closetag
+" =====================
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
+" =====================
+" emmet.vim
+" =====================
+" let g:user_emmet_mode="n"
+let g:user_emmet_leader_key="~"
+
+imap <Leader>ee ~,
+map <Leader>ee ~,
+
+imap <Leader>en ~n
+map <Leader>en ~n
+
+imap <Leader>eN ~N
+map <Leader>eN ~N
+
+imap <Leader>ek ~k
+map <Leader>ek ~k
+
+imap <Leader>ed ~d
+map <Leader>ed ~d
+
+imap <Leader>eD ~D
+map <Leader>eD ~D
+
+" =====================
+" coc.nvim
+" =====================
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-p> coc#refresh()
+endif
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>ff  <Plug>(coc-format-selected)
+nmap <leader>ff  <Plug>(coc-format-selected)
+
+" Coc-Yank
+nnoremap <silent> \y  :<C-u>CocList -A --normal yank<cr>
+
+" =====================
+" vimspector
+" =====================
+let g:vimspector_enable_mappings="HUMAN"
+let g:vimspector_variables_display_mode = 'full'
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB', 'vscode-bash-debug' ]
+
+function! s:read_template_into_buffer(template)
+	" has to be a function to avoid the extra space fzf#run insers otherwise
+	execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
+endfunction
+command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+			\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
+			\   'down': 20,
+			\   'sink': function('<sid>read_template_into_buffer')
+			\ })
+
+nmap <leader>f5 :call vimspector#Launch()<CR>
+nmap <leader>d<f5> :VimspectorReset<CR>
+nmap <leader>di <Plug>VimspectorBalloonEval
+xmap <leader>di <Plug>VimspectorBalloonEval
+
+" =====================
+" semshi
+" =====================
+let g:semshi#filetypes = ['python']
+let g:semshi#error_sign = 'false'
+
+" =====================
+" vim-instant-markdown
+" =====================
+" let g:instant_markdown_slow = 0
+let g:instant_markdown_autostart = 0
+" let g:instant_markdown_open_to_the_world = 1
+" let g:instant_markdown_allow_unsafe_content = 1
+" let g:instant_markdown_allow_external_content = 0
+" let g:instant_markdown_mathjax = 1
+let g:instant_markdown_autoscroll = 1
+
+
+" =====================
+" vundle
+" =====================
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+" set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
+call plug#begin()
+" Plug 'VundleVim/Vundle.vim'
+Plug 'dstein64/vim-startuptime'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/surround'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'lifepillar/vim-cheat40'
+Plug 'preservim/tagbar'
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'kshenoy/vim-signature'
+Plug 'raimondi/delimitmate'
+Plug 'alvan/vim-closetag'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'css'] }
+Plug 'gcmt/wildfire.vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'preservim/nerdcommenter'
+Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'] }
+Plug 'puremourning/vimspector'
+Plug 'godlygeek/tabular'
+" Plugin 'dense-analysis/ale'
+
+call plug#end()
+
+" set ideajoin
