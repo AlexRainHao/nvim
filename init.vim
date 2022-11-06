@@ -1,4 +1,4 @@
-let g:python4_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
 if has('python3')
     silent! python3 1
 endif
@@ -31,8 +31,10 @@ set showcmd
 set wrap
 set wildmenu
 
-let g:indentLine_char = '┆'
-let g:indentLine_enabled = 1
+let g:indentLine_char       = '┆'
+let g:indentLine_color_term = 238
+let g:indentLine_color_gui  = '#333333'
+let g:indentLine_enabled    = 1
 
 set scrolloff    =7
 
@@ -66,6 +68,79 @@ set smartcase
 " mouse yank
 set mouse=a
 
+" history restore
+silent !mkdir -p ~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/undo
+set backupdir=~/.config/nvim/tmp/backup
+set directory=~/.config/nvim/tmp/backup
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.config/nvim/tmp/undo
+endif
+
+" terminal behavior
+let g:neoterm_autoscroll=1
+autocmd TermOpen term://* startinsert
+
+" run code
+" " Compile function
+noremap r :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		set splitbelow
+		:sp
+		:res -5
+		term gcc % -o %< && time ./%<
+	elseif &filetype == 'cpp'
+		set splitbelow
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'cs'
+		set splitbelow
+		silent! exec "!mcs %"
+		:sp
+		:res -5
+		:term mono %<.exe
+	elseif &filetype == 'java'
+		set splitbelow
+		:sp
+		:res -5
+		term javac % && time java %<
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		set splitbelow
+		:sp
+		:term python3 %
+	elseif &filetype == 'html'
+		silent! exec "!".g:mkdp_browser." % &"
+	elseif &filetype == 'markdown'
+		exec "InstantMarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	elseif &filetype == 'dart'
+		exec "CocCommand flutter.run -d ".g:flutter_default_device." ".g:flutter_run_args
+		silent! exec "CocCommand flutter.dev.openDevLog"
+	elseif &filetype == 'javascript'
+		set splitbelow
+		:sp
+		:term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+	elseif &filetype == 'racket'
+		set splitbelow
+		:sp
+		:res -5
+		term racket %
+	elseif &filetype == 'go'
+		set splitbelow
+		:sp
+		:term go run .
+	endif
+endfunc
+ 
 " indentLine
 let g:indentLine_char = '┆'
 let g:indentLine_enabled = 1
@@ -205,7 +280,7 @@ nnoremap <Leader>? :Cheat40
 " =====================
 " Tagbar
 " =====================
-nmap <F8> :TagbarToggle<CR>
+nmap <silent> <Leader>tm :TagbarToggle<CR>
 
 " YMC
 let g:ycm_use_clangd = 0
@@ -419,7 +494,7 @@ endif
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent><leader>gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -469,6 +544,11 @@ xmap <leader>di <Plug>VimspectorBalloonEval
 " =====================
 let g:semshi#filetypes = ['python']
 let g:semshi#error_sign = 'false'
+
+function MyCustomHighlights()
+    hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d7005f
+endfunction
+autocmd FileType python call MyCustomHighlights()
 
 " =====================
 " vim-instant-markdown
@@ -523,6 +603,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'] }
 Plug 'puremourning/vimspector'
 Plug 'godlygeek/tabular'
+Plug 'mhinz/vim-startify'
 " Plugin 'dense-analysis/ale'
 
 call plug#end()
