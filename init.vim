@@ -84,7 +84,7 @@ autocmd TermOpen term://* startinsert
 
 " run code
 " " Compile function
-noremap r :call CompileRunGcc()<CR>
+noremap <Leader>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -561,6 +561,18 @@ let g:instant_markdown_autostart = 0
 " let g:instant_markdown_mathjax = 1
 let g:instant_markdown_autoscroll = 1
 
+" =====================
+" undotree
+" =====================
+nmap <Leader>U :UndotreeToggle<CR>
+
+" =====================
+" far.vim
+" =====================
+set lazyredraw            " improve scrolling performance when navigating through large results
+set regexpengine=1        " use old regexp engine
+set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
+let g:far#enable_undo = 1
 
 " =====================
 " vundle
@@ -604,6 +616,8 @@ Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'] }
 Plug 'puremourning/vimspector'
 Plug 'godlygeek/tabular'
 Plug 'mhinz/vim-startify'
+Plug 'mbbill/undotree'
+Plug 'brooth/far.vim'
 " Plugin 'dense-analysis/ale'
 
 call plug#end()
