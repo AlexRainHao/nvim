@@ -84,7 +84,7 @@ autocmd TermOpen term://* startinsert
 
 " run code
 " " Compile function
-noremap <Leader>r :call CompileRunGcc()<CR>
+noremap r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -280,7 +280,7 @@ nnoremap <Leader>? :Cheat40
 " =====================
 " Tagbar
 " =====================
-nmap <silent> <Leader>tm :TagbarToggle<CR>
+nmap <silent> <Leader>tt :TagbarToggle<CR>
 
 " YMC
 let g:ycm_use_clangd = 0
@@ -630,7 +630,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'css'] }
 Plug 'gcmt/wildfire.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'preservim/nerdcommenter'
-Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'] }
+Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'],  'do': ':UpdateRemotePlugins'  }
 Plug 'puremourning/vimspector'
 Plug 'godlygeek/tabular'
 Plug 'mhinz/vim-startify'
