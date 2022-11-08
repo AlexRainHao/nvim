@@ -573,6 +573,24 @@ set lazyredraw            " improve scrolling performance when navigating throug
 set regexpengine=1        " use old regexp engine
 set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
 let g:far#enable_undo = 1
+let g:far#debug = 0
+
+" =====================
+" ultisnips
+" =====================
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-e>"
+let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+" let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/']
+" silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
+" " Solve extreme insert-mode lag on macOS (by disabling autotrigger)
+" augroup ultisnips_no_auto_expansion
+"     au!
+"     au VimEnter * au! UltiSnips_AutoTrigger
+" augroup END
+" 
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 " =====================
 " vundle
@@ -618,6 +636,9 @@ Plug 'godlygeek/tabular'
 Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'brooth/far.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 " Plugin 'dense-analysis/ale'
 
 call plug#end()
