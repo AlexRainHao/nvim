@@ -249,7 +249,7 @@ command! -nargs=? -bang -complete=dir Files
 nnoremap <silent> <leader>h :History<CR>
 nnoremap <silent> <leader>p :Files<CR>
 nnoremap <silent> <leader>P :Files!<CR>
-nnoremap <silent> <leader>t :Tags<CR>
+"nnoremap <silent> <leader>t :Tags<CR>
 nnoremap <silent> <leader>w :Buffers<CR>
 nnoremap <silent> <leader>b :BLines<CR>
 nnoremap <silent> <leader>B :Lines<CR>
@@ -357,6 +357,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " =====================
 let g:indent_guides_enable_on_vim_startup = 1
 
+let g:TableModeToggle = "<leader>tm"
 let g:table_mode_relign_map = '<Leader>trr'
 let g:table_mode_delete_column_map = '<Leader>tdcc'
 let g:table_mode_insert_column_before_map = '<Leader>ticC'
