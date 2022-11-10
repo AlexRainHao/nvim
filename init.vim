@@ -78,10 +78,6 @@ if has('persistent_undo')
     set undodir=~/.config/nvim/tmp/undo
 endif
 
-" terminal behavior
-let g:neoterm_autoscroll=1
-autocmd TermOpen term://* startinsert
-
 " indentLine
 let g:indentLine_char = '┆'
 let g:indentLine_enabled = 1
@@ -151,6 +147,11 @@ map tu :tabe<CR>
 map Q :q<CR>
 map W :w<CR>
 
+" terminal behavior
+let g:neoterm_autoscroll=1
+
+autocmd TermOpen term://* startinsert
+
 func! OpenARightTerm(direction)
     if a:direction == "l" 
         set splitright
@@ -164,6 +165,7 @@ endfunc
     
 nmap <silent> <leader>Tl :call OpenARightTerm("l")<CR>
 nmap <silent> <leader>Tj :call OpenARightTerm("j")<CR>
+tnoremap <Esc> <C-\><C-n>
 
 " noremap <Leader>qq ciw""<Esc>P
 " noremap <Leader>qu di"hPl2x
