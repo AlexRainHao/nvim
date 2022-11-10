@@ -246,15 +246,6 @@ imap<c-x><c-l> <plug>(fzf-complete-buffer-line)
 command! -nargs=? -bang -complete=dir Files
         \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : {}, <bang>0)
 
-nnoremap <silent> <leader>h :History<CR>
-nnoremap <silent> <leader>p :Files<CR>
-nnoremap <silent> <leader>P :Files!<CR>
-"nnoremap <silent> <leader>t :Tags<CR>
-nnoremap <silent> <leader>w :Buffers<CR>
-nnoremap <silent> <leader>b :BLines<CR>
-nnoremap <silent> <leader>B :Lines<CR>
-nnoremap <silent> <leader>rg :Rg<CR>
-
 "FZF Buffer Delete
 
 function! s:list_buffers()
@@ -274,6 +265,16 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
+nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>p :Files<CR>
+nnoremap <silent> <leader>P :Files!<CR>
+"nnoremap <silent> <leader>t :Tags<CR>
+nnoremap <silent> <leader>w :Buffers<CR>
+nnoremap <silent> <leader>b :BLines<CR>
+nnoremap <silent> <leader>B :Lines<CR>
+nnoremap <silent> <leader>rg :Rg<CR>
+nnoremap <silent> <leader>bb :BD<CR>
+
 " =====================
 " Cheat40
 " =====================
@@ -282,7 +283,7 @@ nnoremap <Leader>? :Cheat40
 " =====================
 " Tagbar
 " =====================
-nmap <silent> <Leader>tt :TagbarToggle<CR>
+nmap <silent> <Leader><C-t> :TagbarToggle<CR>
 
 " YMC
 let g:ycm_use_clangd = 0
@@ -632,7 +633,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lifepillar/vim-cheat40'
 Plug 'preservim/tagbar'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
