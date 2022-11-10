@@ -151,6 +151,20 @@ map tu :tabe<CR>
 map Q :q<CR>
 map W :w<CR>
 
+func! OpenARightTerm(direction)
+    if a:direction == "l" 
+        set splitright
+        :vs
+    elseif a:direction == "j"
+        set splitbelow
+        :sp
+    endif
+    :term
+endfunc
+    
+nmap <silent> <leader>Tl :call OpenARightTerm("l")<CR>
+nmap <silent> <leader>Tj :call OpenARightTerm("j")<CR>
+
 " noremap <Leader>qq ciw""<Esc>P
 " noremap <Leader>qu di"hPl2x
 " noremap <Leader>qr ciw${}<Esc>P
@@ -301,7 +315,7 @@ let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 " use custom IP to open preview page
 " useful when you work in remote vim and preview on local browser
-" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/10
 " default empty
 let g:mkdp_open_ip = ''
 
