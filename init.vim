@@ -632,7 +632,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lifepillar/vim-cheat40'
 Plug 'preservim/tagbar'
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
