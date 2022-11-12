@@ -66,5 +66,9 @@
   "java.enabled": false,
   "java.jdt.ls.home": "/Users/alexrain/yyh/yyh_code/java/jdt-language-server",
   "yank.highlight.enable": true,
-  "yank.highlight.duration": 500
+  "yank.highlight.duration": 500,
+  "list.normalMappings": {
+    "<C-j>": "command:CocNext",
+    "<C-k>": "command:CocPrev"
+  }
 }

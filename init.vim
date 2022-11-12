@@ -516,7 +516,7 @@ endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-p> coc#refresh()
 else
   inoremap <silent><expr> <c-p> coc#refresh()
 endif
