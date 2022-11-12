@@ -542,8 +542,7 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>ff  <Plug>(coc-format-selected)
-nmap <leader>ff  <Plug>(coc-format-selected)
+nmap <leader>ff  :call CocAction("format")<CR>
 
 " Coc-Yank
 nnoremap <silent> \y  :<C-u>CocList -A --normal yank<cr>
