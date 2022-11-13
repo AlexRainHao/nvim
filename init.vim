@@ -483,6 +483,7 @@ map <Leader>ed ~d
 imap <Leader>eD ~D
 map <Leader>eD ~D
 
+imap <Leader>ej ~j
 " =====================
 " coc.nvim
 " =====================
