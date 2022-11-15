@@ -70,5 +70,6 @@
   "list.normalMappings": {
     "<C-j>": "command:CocNext",
     "<C-k>": "command:CocPrev"
-  }
+  },
+  "docker.enable": true
 }
