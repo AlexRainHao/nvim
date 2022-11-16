@@ -494,9 +494,10 @@ let g:coc_global_extentions = [
         \ "coc-yaml",
         \ "coc-pyright",
         \ "coc-cmake",
-        \ "coc-vetur",
+        \ "coc-volar",
         \ "coc-clangd",
         \ "coc-tsserver",
+        \ "coc-docker",
         \ "coc-yank" ]
 
 inoremap <silent><expr> <TAB>
@@ -622,6 +623,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 " 
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+"
 
 " =====================
 " vundle
