@@ -693,6 +693,7 @@ Plug 'mbbill/undotree'
 Plug 'brooth/far.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'gisphm/vim-gitignore'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 "Plug 'tpope/surround'
