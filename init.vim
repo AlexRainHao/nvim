@@ -66,6 +66,8 @@ set ignorecase
 set smartcase
 
 " mouse yank
+" alt+mouse while selection could disable it, and then copied to system-os
+" clipboard in `mac-os`
 set mouse=a
 
 " history restore
@@ -657,10 +659,9 @@ filetype plugin indent on
 set rtp+=/usr/local/opt/fzf
 call plug#begin()
 " Plug 'VundleVim/Vundle.vim'
-Plug 'dstein64/vim-startuptime'
+let g:plug_url_format = 'git@github.com:%s.git'
+Plug 'dstein64/vim-startuptime' 
 Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'joshdick/onedark.vim'
@@ -692,6 +693,11 @@ Plug 'mbbill/undotree'
 Plug 'brooth/far.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+unlet g:plug_url_format
+Plug 'tpope/vim-vinegar'
+"Plug 'tpope/surround'
+Plug 'https://github.com/tpope/vim-surround.git'
+
 
 " Plugin 'dense-analysis/ale'
 
