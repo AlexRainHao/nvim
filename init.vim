@@ -146,8 +146,9 @@ map tu :tabe<CR>
 "map gt$ :tabl<CR>
 "map gt0 :tabfir<CR>
 
-map Q :q<CR>
-map W :w<CR>
+nmap Q :q<CR>
+nmap <leader>Q :q!<CR>
+nmap W :w<CR>
 
 " terminal behavior
 let g:neoterm_autoscroll=1
@@ -649,6 +650,17 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
 " =====================
+" wildfire
+" =====================
+nmap <leader>s <Plug>(wildfire-quick-select)
+
+" =====================
+" nerdcommenter
+" =====================
+let g:NERDAltDelims_java = 0
+let g:NERDCustomDelimiters = { 'javascript': { 'left': '// ', 'leftAlt': '/**','rightAlt': '*/' } }
+
+" =====================
 " vundle
 " =====================
 filetype on
@@ -696,7 +708,7 @@ Plug 'honza/vim-snippets'
 Plug 'gisphm/vim-gitignore'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
-"Plug 'tpope/surround'
+Plug 'tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-surround.git'
 
 
