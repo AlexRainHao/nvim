@@ -675,6 +675,17 @@ if has("autocmd")
     autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|NOTE\|BUG\)')
 endif
 " =====================
+" vim-doge
+" =====================
+let g:doge_filetype_aliases = {
+\  'javascript': ['vue']
+\}
+
+let g:doge_mapping = "<Leader>d"
+let g:doge_mapping_comment_jump_forward = "<C-j>"
+let g:doge_mapping_comment_jump_backward= "<C-k>"
+
+" =====================
 " vundle
 " =====================
 filetype on
@@ -721,6 +732,7 @@ Plug 'brooth/far.vim'
 Plug 'honza/vim-snippets'
 Plug 'gisphm/vim-gitignore'
 Plug 'mileszs/ack.vim'
+Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
