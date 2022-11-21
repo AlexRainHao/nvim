@@ -614,9 +614,9 @@ let g:far#debug = 0
 " =====================
 " ultisnips
 " =====================
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-e>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 " let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/']
 " silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
 " " Solve extreme insert-mode lag on macOS (by disabling autotrigger)
@@ -703,7 +703,7 @@ Plug 'godlygeek/tabular'
 Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'brooth/far.vim'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'gisphm/vim-gitignore'
 unlet g:plug_url_format
