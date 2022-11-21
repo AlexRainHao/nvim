@@ -661,6 +661,20 @@ let g:NERDAltDelims_java = 0
 let g:NERDCustomDelimiters = { 'javascript': { 'left': '// ', 'leftAlt': '/**','rightAlt': '*/' } }
 
 " =====================
+" ack.vim
+" =====================
+if executable('ag')
+    let g:ackprg = "Ag --vimgrep"
+endif
+
+nmap <Leader>a :Ack!<Space>
+
+command Todo Ack! 'TODO|FIXME|NOTE|BUG'
+
+if has("autocmd")
+    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|NOTE\|BUG\)')
+endif
+" =====================
 " vundle
 " =====================
 filetype on
@@ -706,6 +720,7 @@ Plug 'brooth/far.vim'
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'gisphm/vim-gitignore'
+Plug 'mileszs/ack.vim'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
