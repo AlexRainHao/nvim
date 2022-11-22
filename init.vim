@@ -304,6 +304,22 @@ nnoremap <Leader>? :Cheat40
 " =====================
 nmap <silent> <Leader><C-t> :TagbarToggle<CR>
 
+" Add support for markdown files in tagbar.
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '~/.local/share/nvim/plugged/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes --sro=»',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '»',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
 " YMC
 let g:ycm_use_clangd = 0
 
@@ -733,6 +749,7 @@ Plug 'honza/vim-snippets'
 Plug 'gisphm/vim-gitignore'
 Plug 'mileszs/ack.vim'
 Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
+Plug 'jszakmeister/markdown2ctags'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
