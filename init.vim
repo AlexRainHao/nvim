@@ -191,9 +191,9 @@ func! CompileRunGcc()
 		term gcc % -o %< && time ./%<
 	elseif &filetype == 'cpp'
 		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
+		exec "!clang++ -std=c++11 % -Wall -g -o %<"
 		:sp
-		:res -15
+		:res -10
 		:term ./%<
 	elseif &filetype == 'cs'
 		set splitbelow
@@ -586,7 +586,7 @@ function! s:read_template_into_buffer(template)
 	execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
 endfunction
 command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-			\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
+			\   'source': 'ls ~/.config/nvim/sample_vimspector_json',
 			\   'down': 20,
 			\   'sink': function('<sid>read_template_into_buffer')
 			\ })
