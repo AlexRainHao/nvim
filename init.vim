@@ -16,6 +16,8 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 
 let skip_defaults_vim=1
 let g:vim_json_conceal=0
+let g:vim_json_syntax_conceal = 0
+let g:indentLine_setConceal = 0
 
 set foldmethod=indent
 set foldlevel=99
@@ -149,6 +151,9 @@ map tu :tabe<CR>
 nmap Q :q<CR>
 nmap <leader>Q :q!<CR>
 nmap W :w<CR>
+
+nmap <M-C-d> $a;<Esc>o
+imap <M-C-d> <Esc>:call nvim_input("<M-C-d>")<CR>
 
 " terminal behavior
 let g:neoterm_autoscroll=1
