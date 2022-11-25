@@ -151,6 +151,7 @@ map tu :tabe<CR>
 nmap Q :q<CR>
 nmap <leader>Q :q!<CR>
 nmap W :w<CR>
+nmap <Leader>W :wa<CR>
 
 nmap <M-C-d> $a;<Esc>o
 imap <M-C-d> <Esc>:call nvim_input("<M-C-d>")<CR>
@@ -591,10 +592,13 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 			\   'sink': function('<sid>read_template_into_buffer')
 			\ })
 
-nmap <leader>f5 :call vimspector#Launch()<CR>
+nmap <leader>f5 :w :call vimspector#Launch()<CR>
 nmap <leader>d<f5> :VimspectorReset<CR>
-nmap <leader>di <Plug>VimspectorBalloonEval
-xmap <leader>di <Plug>VimspectorBalloonEval
+nmap <leader>vw :VimspectorWatch 
+nmap <leader>ve :VimspectorEval 
+nmap <leader>vi <Plug>VimspectorBalloonEval
+xmap <leader>vi <Plug>VimspectorBalloonEval
+nmap <leader>vr <Plug>VimspectorRestart
 
 " =====================
 " semshi
