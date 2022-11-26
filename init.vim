@@ -759,14 +759,25 @@ Plug 'gisphm/vim-gitignore'
 Plug 'mileszs/ack.vim'
 Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
 Plug 'jszakmeister/markdown2ctags'
+Plug 'ggandor/leap.nvim'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-surround.git'
-
-
 " Plugin 'dense-analysis/ale'
 
 call plug#end()
 
 " set ideajoin
+" =====================
+" leap.nvim
+" =====================
+lua <<EOF
+-- require('leap').add_default_mappings()
+require('leap').opts.safe_labels = {}
+require('leap').opts.highlight_unlabeled_phase_one_targets = true
+vim.keymap.set({'x', 'o', 'n'}, 'z', '<Plug>(leap-forward-to)')
+vim.keymap.set({'x', 'o', 'n'}, 'Z', '<Plug>(leap-backward-to)')
+vim.keymap.set({'x', 'o', 'n'}, 'gz', '<Plug>(leap-cross-window)')
+EOF
+
