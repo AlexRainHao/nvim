@@ -19,7 +19,7 @@ let g:vim_json_conceal=0
 let g:vim_json_syntax_conceal = 0
 let g:indentLine_setConceal = 0
 
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=99
 set foldenable
 
@@ -515,6 +515,7 @@ imap <Leader>ej ~j
 "
 let g:coc_global_extentions = [
         \ "coc-json",
+        \ "coc-css",
         \ "coc-prettier",
         \ "coc-yaml",
         \ "coc-pyright",
@@ -776,8 +777,8 @@ lua <<EOF
 -- require('leap').add_default_mappings()
 require('leap').opts.safe_labels = {}
 require('leap').opts.highlight_unlabeled_phase_one_targets = true
-vim.keymap.set({'x', 'o', 'n'}, 'z', '<Plug>(leap-forward-to)')
-vim.keymap.set({'x', 'o', 'n'}, 'Z', '<Plug>(leap-backward-to)')
-vim.keymap.set({'x', 'o', 'n'}, 'gz', '<Plug>(leap-cross-window)')
+vim.keymap.set({'x', 'o', 'n'}, 'e', '<Plug>(leap-forward-to)')
+vim.keymap.set({'x', 'o', 'n'}, 'E', '<Plug>(leap-backward-to)')
+vim.keymap.set({'x', 'o', 'n'}, 'ge', '<Plug>(leap-cross-window)')
 EOF
 
