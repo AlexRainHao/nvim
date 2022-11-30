@@ -134,8 +134,8 @@ inoremap jj <esc>
 " noremap <Left> <NOP>
 " noremap <Right> <NOP>
 
-map <up> :res +5<CR>
-map <down> :res -5<CR>
+map <up> :res -5<CR>
+map <down> :res +5<CR>
 map <left> :vertical resize -5<CR>
 map <right> :vertical resize +5<CR>
 
@@ -712,6 +712,12 @@ let g:doge_mapping_comment_jump_forward = "<C-j>"
 let g:doge_mapping_comment_jump_backward= "<C-k>"
 
 " =====================
+" duck.nvim
+" =====================
+nnoremap \dd :lua require("duck").hatch("🐈", 1)<CR>
+nnoremap \dk :lua require("duck").cook("🐈", 1)<CR>
+
+" =====================
 " vundle
 " =====================
 filetype on
@@ -761,6 +767,7 @@ Plug 'mileszs/ack.vim'
 Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
 Plug 'jszakmeister/markdown2ctags'
 Plug 'ggandor/leap.nvim'
+Plug 'tamton-aquib/duck.nvim'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'

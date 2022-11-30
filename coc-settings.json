@@ -1,6 +1,7 @@
 {
   "json.enable": true,
   "json.format.enable": true,
+  "pyright.enable": true,
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
   "clangd.enabled": true,
@@ -26,38 +27,6 @@
       "rootPatterns": ["build/"],
       "initializationOptions": {
         "buildDirectory": "build"
-      }
-    },
-    "python": {
-      "command": "python3",
-      "filetypes": ["python"],
-      "settings": {
-        "plugins": {
-          "mccabe": {
-            "enabled": true,
-            "threshold": 15
-          },
-          "preload": {
-            "enabled": true
-          },
-          "pycodestyle": {
-            "enabled": true
-          },
-          "pydocstyle": {
-            "enabled": false,
-            "match": "(?!test_).*\\.py",
-            "matchDir": "[^\\.].*"
-          },
-          "pyflakes": {
-            "enabled": true
-          },
-          "rope_completion": {
-            "enabled": true
-          },
-          "black": {
-            "enable": true
-          }
-        }
       }
     }
   },
