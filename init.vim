@@ -690,7 +690,7 @@ let g:NERDCustomDelimiters = { 'javascript': { 'left': '// ', 'leftAlt': '/**','
 " ack.vim
 " =====================
 if executable('ag')
-    let g:ackprg = "Ag --vimgrep"
+    let g:ackprg = "ag --vimgrep"
 endif
 
 nmap <Leader>a :Ack!<Space>

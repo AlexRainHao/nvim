@@ -40,5 +40,6 @@
     "<C-j>": "command:CocNext",
     "<C-k>": "command:CocPrev"
   },
-  "docker.enable": true
+  "docker.enable": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips"
 }
