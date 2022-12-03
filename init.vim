@@ -789,3 +789,17 @@ vim.keymap.set({'x', 'o', 'n'}, 'E', '<Plug>(leap-backward-to)')
 vim.keymap.set({'x', 'o', 'n'}, 'ge', '<Plug>(leap-cross-window)')
 EOF
 
+function! SaveWithMatches(s)
+    " get help through `h: a:var`
+    let @" .= a:s . "\n"
+    return a:s
+endfunction
+
+command! -nargs=+ Pmatch call SaveWithMatchess(<f-args>)
+
+function! SaveWithMatchess(...)
+    let @" = ''
+    " get help through `h :s\=`
+    execute printf('%%substitute/%s/\=SaveWithMatches(submatch(0))/g', a:1)
+endfunction
+
