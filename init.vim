@@ -156,6 +156,9 @@ nmap <Leader>W :wa<CR>
 nmap <M-C-d> $a;<Esc>o
 imap <M-C-d> <Esc>:call nvim_input("<M-C-d>")<CR>
 
+nmap <M-]> :tabn<CR>
+nmap <M-[> :tabp<CR>
+
 " terminal behavior
 let g:neoterm_autoscroll=1
 
@@ -254,9 +257,9 @@ noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-nnoremap \n :NERDTreeFocus<CR>
-nnoremap \t :NERDTreeToggle<CR>
-nnoremap \f :NERDTreeFind<CR>
+"nnoremap <Leader>nn :NERDTreeFocus<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>nf :NERDTreeFind<CR>
 
 " =====================
 " FZF.vim
@@ -574,7 +577,7 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>ff  :call CocAction("format")<CR>
 
 " Coc-Yank
-nnoremap <silent> \y  :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <Leader>Y :<C-u>CocList -A --normal yank<cr>
 
 " =====================
 " vimspector
