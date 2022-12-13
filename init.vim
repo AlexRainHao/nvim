@@ -528,7 +528,8 @@ let g:coc_global_extentions = [
         \ "coc-tsserver",
         \ "coc-docker",
         \ "coc-yank",
-        \ "coc-snippets" ]
+        \ "coc-snippets", 
+        \ "coc-marksman" ]
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :

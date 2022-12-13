@@ -41,5 +41,6 @@
     "<C-k>": "command:CocPrev"
   },
   "docker.enable": true,
-  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips"
+  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
+  "marksman.enable": true
 }
