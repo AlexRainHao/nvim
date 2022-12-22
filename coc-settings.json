@@ -31,7 +31,7 @@
     }
   },
   "volar.takeOverMode.enabled": true,
-  "tsserver.enable": false,
+  "tsserver.enable": true,
   "java.enabled": false,
   "java.jdt.ls.home": "/Users/alexrain/yyh/yyh_code/java/jdt-language-server",
   "yank.highlight.enable": true,

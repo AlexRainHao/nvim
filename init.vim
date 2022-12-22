@@ -19,7 +19,7 @@ let g:vim_json_conceal=0
 let g:vim_json_syntax_conceal = 0
 let g:indentLine_setConceal = 0
 
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevel=99
 set foldenable
 
@@ -71,6 +71,7 @@ set smartcase
 " alt+mouse while selection could disable it, and then copied to system-os
 " clipboard in `mac-os`
 set mouse=a
+set clipboard=unnamed
 
 " history restore
 silent !mkdir -p ~/.config/nvim/tmp/backup
@@ -570,6 +571,9 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
+
+" Add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
