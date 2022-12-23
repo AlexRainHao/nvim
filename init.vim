@@ -71,7 +71,7 @@ set smartcase
 " alt+mouse while selection could disable it, and then copied to system-os
 " clipboard in `mac-os`
 set mouse=a
-set clipboard=unnamed
+"set clipboard=unnamed
 
 " history restore
 silent !mkdir -p ~/.config/nvim/tmp/backup
@@ -693,6 +693,11 @@ nmap <leader>s <Plug>(wildfire-quick-select)
 " =====================
 let g:NERDAltDelims_java = 0
 let g:NERDCustomDelimiters = { 'javascript': { 'left': '// ', 'leftAlt': '/**','rightAlt': '*/' } }
+map <leader>/<leader> <plug>NERDCommenterToggle
+map <leader>// <plug>NERDCommenterComment
+map <leader>/$ <plug>NERDCommenterToEOL
+map <leader>/A <plug>NERDCommenterAppend
+map <leader>/l <plug>NERDCommenterAlignLeft
 
 " =====================
 " ack.vim
