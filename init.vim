@@ -776,6 +776,7 @@ Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix
 Plug 'jszakmeister/markdown2ctags'
 Plug 'ggandor/leap.nvim'
 Plug 'tamton-aquib/duck.nvim'
+Plug 'ojroques/nvim-osc52'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
@@ -811,3 +812,12 @@ function! SaveWithMatchess(...)
     execute printf('%%substitute/%s/\=SaveWithMatches(submatch(0))/g', a:1)
 endfunction
 
+" =====================
+" nvim osc52
+" =====================
+lua <<EOF
+-- require('leap').add_default_mappings()
+vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
+EOF
