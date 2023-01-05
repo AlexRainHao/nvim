@@ -584,6 +584,11 @@ nmap <leader>ff  :call CocAction("format")<CR>
 " Coc-Yank
 nnoremap <silent> <Leader>Y :<C-u>CocList -A --normal yank<cr>
 
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-sele)
+
 " =====================
 " vimspector
 " =====================
