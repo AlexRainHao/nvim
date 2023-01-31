@@ -128,7 +128,7 @@ function! s:check_back_space() abort
 endfunction
 
 let mapleader="\<space>"
-inoremap jj <esc>
+inoremap jk <esc>
 
 " noremap <Up> <NOP>
 " noremap <Down> <NOP>
