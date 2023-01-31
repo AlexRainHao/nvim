@@ -787,6 +787,7 @@ Plug 'jszakmeister/markdown2ctags'
 Plug 'ggandor/leap.nvim'
 Plug 'tamton-aquib/duck.nvim'
 Plug 'ojroques/nvim-osc52'
+Plug 'ap/vim-css-color'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
