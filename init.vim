@@ -589,6 +589,13 @@ nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-sele)
 
+" Show all diagnostics
+nnoremap <silent><nowait> <space>oa  :<C-u>CocList diagnostics<cr>
+" Show commands
+nnoremap <silent><nowait> <space>oc  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent><nowait> <space>oo  :<C-u>CocList outline<cr>
+
 " =====================
 " vimspector
 " =====================
@@ -827,7 +834,6 @@ endfunction
 " nvim osc52
 " =====================
 lua <<EOF
--- require('leap').add_default_mappings()
 vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
 vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
