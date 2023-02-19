@@ -17,7 +17,6 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 let skip_defaults_vim=1
 let g:vim_json_conceal=0
 let g:vim_json_syntax_conceal = 0
-let g:indentLine_setConceal = 0
 
 set foldmethod=indent
 set foldlevel=99
@@ -32,11 +31,6 @@ set cursorline
 set showcmd
 set wrap
 set wildmenu
-
-let g:indentLine_char       = '┆'
-let g:indentLine_color_term = 238
-let g:indentLine_color_gui  = '#333333'
-let g:indentLine_enabled    = 1
 
 set scrolloff    =7
 
@@ -85,7 +79,10 @@ endif
 
 " indentLine
 let g:indentLine_char = '┆'
-let g:indentLine_enabled = 1
+let g:indentLine_color_term = 238
+let g:indentLine_color_gui  = '#333333'
+let g:indentLine_enabled    = 1
+let g:indentLine_setConceal = 1
 let g:netrw_keepdir = 0
 let g:netrw_fastbrowse = 0
 
@@ -401,7 +398,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " =====================
 " vim-indent-guides
 " =====================
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 
 let g:TableModeToggle = "<leader>tm"
 let g:table_mode_relign_map = '<Leader>trr'
