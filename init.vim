@@ -266,7 +266,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "nnoremap <Leader>nn :NERDTreeFocus<CR>
-nnoremap <Leader>nn :NERDTreeToggle<CR>
+nnoremap <Leader>nn :silent! NERDTreeToggle<CR>
 nnoremap <Leader>nf :NERDTreeFind<CR>
 
 " =====================
