@@ -125,7 +125,6 @@ if exists('+termguicolors')
 endif
 
 syntax on
-colorscheme everforest
 
 " ----------------
 "  Keybinds
@@ -173,7 +172,7 @@ let g:neoterm_autoscroll=1
 autocmd TermOpen term://* startinsert
 
 func! OpenARightTerm(direction)
-    if a:direction == "l" 
+    if a:direction == "l"
         set splitright
         :vs
     elseif a:direction == "j"
@@ -182,7 +181,7 @@ func! OpenARightTerm(direction)
     endif
     :term
 endfunc
-    
+
 nmap <silent> <leader>Tl :call OpenARightTerm("l")<CR>
 nmap <silent> <leader>Tj :call OpenARightTerm("j")<CR>
 tnoremap <Esc> <C-\><C-n>
@@ -257,7 +256,7 @@ endfunc
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
 " =====================
-" NERDTree 
+" NERDTree
 " =====================
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * NERDTree | wincmd p
@@ -536,7 +535,7 @@ let g:coc_global_extentions = [
         \ "coc-tsserver",
         \ "coc-docker",
         \ "coc-yank",
-        \ "coc-snippets", 
+        \ "coc-snippets",
         \ "coc-marksman" ]
 
 inoremap <silent><expr> <TAB>
@@ -622,8 +621,8 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 
 nmap <leader>f5 :w :call vimspector#Launch()<CR>
 nmap <leader>d<f5> :VimspectorReset<CR>
-nmap <leader>vw :VimspectorWatch 
-nmap <leader>ve :VimspectorEval 
+nmap <leader>vw :VimspectorWatch
+nmap <leader>ve :VimspectorEval
 nmap <leader>vi <Plug>VimspectorBalloonEval
 xmap <leader>vi <Plug>VimspectorBalloonEval
 nmap <leader>vr <Plug>VimspectorRestart
@@ -677,7 +676,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 "     au!
 "     au VimEnter * au! UltiSnips_AutoTrigger
 " augroup END
-" 
+"
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 "
@@ -761,7 +760,7 @@ set rtp+=/usr/local/opt/fzf
 call plug#begin()
 " Plug 'VundleVim/Vundle.vim'
 let g:plug_url_format = 'git@github.com:%s.git'
-Plug 'dstein64/vim-startuptime' 
+Plug 'dstein64/vim-startuptime'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -802,6 +801,8 @@ Plug 'ggandor/leap.nvim'
 Plug 'tamton-aquib/duck.nvim'
 Plug 'ojroques/nvim-osc52'
 Plug 'ap/vim-css-color'
+Plug 'sainnhe/edge'
+Plug 'NLKNguyen/papercolor-theme'
 unlet g:plug_url_format
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
@@ -809,6 +810,13 @@ Plug 'https://github.com/tpope/vim-surround.git'
 " Plugin 'dense-analysis/ale'
 
 call plug#end()
+
+" The configuration options should be placed before `colorscheme edge`.
+let g:edge_style = 'aura'
+let g:edge_dim_foreground = 1
+let g:edge_better_performance = 1
+
+colorscheme PaperColor
 
 " set ideajoin
 " =====================
@@ -845,3 +853,5 @@ vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
 vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
 EOF
+
+
