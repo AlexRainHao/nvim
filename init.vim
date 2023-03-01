@@ -519,6 +519,7 @@ imap <Leader>eD ~D
 map <Leader>eD ~D
 
 imap <Leader>ej ~j
+
 " =====================
 " coc.nvim
 " =====================
@@ -536,7 +537,8 @@ let g:coc_global_extentions = [
         \ "coc-docker",
         \ "coc-yank",
         \ "coc-snippets",
-        \ "coc-marksman" ]
+        \ "coc-marksman", 
+        \ "coc-go" ]
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
@@ -601,6 +603,15 @@ nnoremap <silent><nowait> <space>oa  :<C-u>CocList diagnostics<cr>
 nnoremap <silent><nowait> <space>oc  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent><nowait> <space>oo  :<C-u>CocList outline<cr>
+
+" =====================
+" golang lsp
+" =====================
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+autocmd FileType go nmap <M-g>fi :CocCommand go.test.generate.file<cr>
+autocmd FileType go nmap <M-g>fu :CocCommand go.test.generate.function<cr>
+autocmd FileType go nmap <M-g>ff :CocCommand go.test.toggle<cr>
 
 " =====================
 " vimspector
