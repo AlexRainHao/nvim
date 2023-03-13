@@ -829,6 +829,8 @@ let g:edge_better_performance = 1
 
 colorscheme PaperColor
 
+hi CocUnusedHighlight ctermbg=NONE guibg=NONE guifg=#808080
+
 " set ideajoin
 " =====================
 " leap.nvim
@@ -864,5 +866,4 @@ vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
 vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
 vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
 EOF
-
 
