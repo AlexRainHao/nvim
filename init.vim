@@ -141,10 +141,15 @@ inoremap jk <esc>
 " noremap <Left> <NOP>
 " noremap <Right> <NOP>
 
-map <up> :res -5<CR>
-map <down> :res +5<CR>
-map <left> :vertical resize -5<CR>
-map <right> :vertical resize +5<CR>
+"map <up> :res -5<CR>
+"map <down> :res +5<CR>
+"map <left> :vertical resize -5<CR>
+"map <right> :vertical resize +5<CR>
+
+map <up> <c-w>k
+map <down> <c-w>j
+map <left> <c-w>h
+map <right> <c-w>l
 
 map <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
