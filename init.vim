@@ -765,6 +765,12 @@ nnoremap \dd :lua require("duck").hatch("🐈", 1)<CR>
 nnoremap \dk :lua require("duck").cook("🐈", 1)<CR>
 
 " =====================
+" coc-marksman
+" =====================
+nmap <silent> ,ca <Plug>(coc-codeaction-source)
+"nmap ,ca :call CocActionAsync('codeAction', '', ['source'], v:true)<CR>
+
+" =====================
 " vundle
 " =====================
 filetype on
@@ -832,7 +838,7 @@ let g:edge_style = 'aura'
 let g:edge_dim_foreground = 1
 let g:edge_better_performance = 1
 
-colorscheme PaperColor
+colorscheme slate
 
 hi CocUnusedHighlight ctermbg=NONE guibg=NONE guifg=#808080
 
