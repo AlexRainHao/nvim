@@ -310,10 +310,10 @@ nnoremap <silent> <leader>p :Files<CR>
 nnoremap <silent> <leader>P :Files!<CR>
 "nnoremap <silent> <leader>t :Tags<CR>
 nnoremap <silent> <leader>w :Buffers<CR>
-nnoremap <silent> <leader>b :BLines<CR>
-nnoremap <silent> <leader>B :Lines<CR>
+nnoremap <silent> <leader>B :BLines<CR>
+nnoremap <silent> <leader>bb :Lines<CR>
 nnoremap <silent> <leader>rg :Rg<CR>
-nnoremap <silent> <leader>bb :BD<CR>
+nnoremap <silent> <leader>bd :BD<CR>
 
 " =====================
 " Cheat40

@@ -1,5 +1,5 @@
 {
-  "coc.preferences.jumpCommand": "tabe",
+  "coc.preferences.jumpCommand": "tab drop",
   "npm.binPath": "/Users/alexrain/.nvm/versions/node/v16.19.0/bin/npm",
   "json.enable": true,
   "json.format.enable": true,
