@@ -528,7 +528,10 @@ imap <Leader>ej ~j
 " =====================
 " coc.nvim
 " =====================
-"
+
+set re=0
+let g:coc_node_path = "/usr/local/bin/node"
+
 let g:coc_global_extentions = [
         \ "coc-json",
         \ "coc-css",
@@ -774,8 +777,6 @@ nmap <silent> ,ca <Plug>(coc-codeaction-source)
 " vundle
 " =====================
 filetype on
-filetype indent on
-filetype plugin on
 filetype plugin indent on
 " set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/local/opt/fzf
@@ -795,7 +796,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'lifepillar/vim-cheat40'
 Plug 'preservim/tagbar'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
