@@ -612,6 +612,8 @@ nnoremap <silent><nowait> <space>oc  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent><nowait> <space>oo  :<C-u>CocList outline<cr>
 
+inoremap <silent> <Leader>,s <C-r>=CocActionAsync('showSignatureHelp')<CR>
+
 " =====================
 " golang lsp
 " =====================
@@ -839,7 +841,7 @@ let g:edge_style = 'aura'
 let g:edge_dim_foreground = 1
 let g:edge_better_performance = 1
 
-colorscheme slate
+colorscheme everforest
 
 hi CocUnusedHighlight ctermbg=NONE guibg=NONE guifg=#808080
 
