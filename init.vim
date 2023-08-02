@@ -151,7 +151,7 @@ map <down> <c-w>j
 map <left> <c-w>h
 map <right> <c-w>l
 
-map <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
+map <Space><Space> <Esc>/<++><CR>:nohlsearch<CR>"0c4l
 
 inoremap <c-k> <c-o>d$
 inoremap <c-d> <c-o>s
