@@ -828,7 +828,8 @@ Plug 'gisphm/vim-gitignore'
 Plug 'mileszs/ack.vim'
 Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
 Plug 'jszakmeister/markdown2ctags'
-Plug 'ggandor/leap.nvim'
+"Plug 'ggandor/leap.nvim'
+Plug 'phaazon/hop.nvim'
 Plug 'tamton-aquib/duck.nvim'
 Plug 'ojroques/nvim-osc52'
 Plug 'ap/vim-css-color'
@@ -855,28 +856,49 @@ hi CocUnusedHighlight ctermbg=NONE guibg=NONE guifg=#808080
 " =====================
 " leap.nvim
 " =====================
+"lua <<EOF
+"-- require('leap').add_default_mappings()
+"require('leap').opts.safe_labels = {}
+"require('leap').opts.highlight_unlabeled_phase_one_targets = true
+"vim.keymap.set({'x', 'o', 'n'}, 'e', '<Plug>(leap-forward-to)')
+"vim.keymap.set({'x', 'o', 'n'}, 'E', '<Plug>(leap-backward-to)')
+"vim.keymap.set({'x', 'o', 'n'}, 'ge', '<Plug>(leap-cross-window)')
+"EOF
+
+"function! SaveWithMatches(s)
+    "" get help through `h: a:var`
+    "let @" .= a:s . "\n"
+    "return a:s
+"endfunction
+
+"command! -nargs=+ Pmatch call SaveWithMatchess(<f-args>)
+
+"function! SaveWithMatchess(...)
+    "let @" = ''
+    "" get help through `h :s\=`
+    "execute printf('%%substitute/%s/\=SaveWithMatches(submatch(0))/g', a:1)
+"endfunction
+
+" =====================
+" hop.nvim
+" =====================
 lua <<EOF
--- require('leap').add_default_mappings()
-require('leap').opts.safe_labels = {}
-require('leap').opts.highlight_unlabeled_phase_one_targets = true
-vim.keymap.set({'x', 'o', 'n'}, 'e', '<Plug>(leap-forward-to)')
-vim.keymap.set({'x', 'o', 'n'}, 'E', '<Plug>(leap-backward-to)')
-vim.keymap.set({'x', 'o', 'n'}, 'ge', '<Plug>(leap-cross-window)')
+require'hop'.setup()
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
+vim.keymap.set('', 'e', function()
+  hop.hint_char2({ direction = directions.AFTER_CURSOR, current_line_only = false })
+end, {remap=true})
+vim.keymap.set('', 'E', function()
+  hop.hint_char2({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+end, {remap=true})
+vim.keymap.set('', 't', function()
+  hop.hint_lines_skip_whitespace({ direction = directions.AFTER_CURSOR})
+end, {remap=true})
+vim.keymap.set('', 'T', function()
+  hop.hint_lines_skip_whitespace({ direction = directions.BEFORE_CURSOR})
+end, {remap=true})
 EOF
-
-function! SaveWithMatches(s)
-    " get help through `h: a:var`
-    let @" .= a:s . "\n"
-    return a:s
-endfunction
-
-command! -nargs=+ Pmatch call SaveWithMatchess(<f-args>)
-
-function! SaveWithMatchess(...)
-    let @" = ''
-    " get help through `h :s\=`
-    execute printf('%%substitute/%s/\=SaveWithMatches(submatch(0))/g', a:1)
-endfunction
 
 " =====================
 " nvim osc52
