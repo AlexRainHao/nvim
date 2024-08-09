@@ -679,7 +679,7 @@ let g:instant_markdown_logfile='/tmp/instant_markdown.log'
 " =====================
 " undotree
 " =====================
-nmap <Leader>U :UndotreeToggle<CR>
+" nmap <Leader>U :UndotreeToggle<CR>
 
 " =====================
 " far.vim
@@ -790,56 +790,81 @@ filetype plugin indent on
 set rtp+=/usr/local/opt/fzf
 call plug#begin()
 " Plug 'VundleVim/Vundle.vim'
-let g:plug_url_format = 'git@github.com:%s.git'
-Plug 'dstein64/vim-startuptime'
-Plug 'Yggdroot/indentLine'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'lifepillar/vim-cheat40'
-Plug 'preservim/tagbar'
-"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'kshenoy/vim-signature'
-Plug 'raimondi/delimitmate'
-Plug 'alvan/vim-closetag'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'css'] }
-Plug 'gcmt/wildfire.vim'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'preservim/nerdcommenter'
-Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'],  'do': ':UpdateRemotePlugins'  }
-Plug 'puremourning/vimspector'
-Plug 'godlygeek/tabular'
-Plug 'mhinz/vim-startify'
-Plug 'mbbill/undotree'
-Plug 'brooth/far.vim'
-"Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'gisphm/vim-gitignore'
-Plug 'mileszs/ack.vim'
-Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
-Plug 'jszakmeister/markdown2ctags'
-"Plug 'ggandor/leap.nvim'
-Plug 'phaazon/hop.nvim'
-Plug 'tamton-aquib/duck.nvim'
-Plug 'ojroques/nvim-osc52'
-Plug 'ap/vim-css-color'
-Plug 'sainnhe/edge'
-Plug 'NLKNguyen/papercolor-theme'
-unlet g:plug_url_format
+" ======================================
+" core
+" ======================================
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'https://github.com/tpope/vim-surround.git'
+
+let g:plug_url_format = 'git@github.com:%s.git'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'raimondi/delimitmate'
+Plug 'gcmt/wildfire.vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'preservim/nerdcommenter'
+Plug 'brooth/far.vim'
 " Plugin 'dense-analysis/ale'
+
+" ======================================
+" lsp / language specific
+" ======================================
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+Plug 'alvan/vim-closetag'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'css'] }
+Plug 'numirias/semshi', { 'for' :['python', 'vim-plug'],  'do': ':UpdateRemotePlugins'  }
+Plug 'puremourning/vimspector'
+"Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'gisphm/vim-gitignore'
+Plug 'kkoomen/vim-doge', { 'do': 'pnpm i --no-save && pnpm run build:binary:unix' }
+Plug 'jszakmeister/markdown2ctags'
+Plug 'ap/vim-css-color'
+
+" ======================================
+" move
+" ======================================
+Plug 'preservim/tagbar'
+Plug 'kshenoy/vim-signature'
+Plug 'mileszs/ack.vim'
+"Plug 'ggandor/leap.nvim'
+Plug 'phaazon/hop.nvim'
+
+" ======================================
+" appearance style
+" ======================================
+Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/edge'
+Plug 'NLKNguyen/papercolor-theme'
+
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'Yggdroot/indentLine'
+Plug 'mhinz/vim-startify'
+" Plug 'nathanaelkane/vim-indent-guides'
+
+" ======================================
+" utils
+" ======================================
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+Plug 'godlygeek/tabular'
+Plug 'ojroques/nvim-osc52'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'mbbill/undotree'
+
+" ======================================
+" chore
+" ======================================
+" Plug 'tamton-aquib/duck.nvim'
+Plug 'lifepillar/vim-cheat40'
+Plug 'dstein64/vim-startuptime'
 
 call plug#end()
 
@@ -892,10 +917,10 @@ end, {remap=true})
 vim.keymap.set('', 'E', function()
   hop.hint_char2({ direction = directions.BEFORE_CURSOR, current_line_only = false })
 end, {remap=true})
-vim.keymap.set('', 't', function()
+vim.keymap.set('', 'c', function()
   hop.hint_lines_skip_whitespace({ direction = directions.AFTER_CURSOR})
 end, {remap=true})
-vim.keymap.set('', 'T', function()
+vim.keymap.set('', 'C', function()
   hop.hint_lines_skip_whitespace({ direction = directions.BEFORE_CURSOR})
 end, {remap=true})
 EOF
