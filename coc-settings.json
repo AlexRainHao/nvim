@@ -50,4 +50,5 @@
   "marksman.enable": true,
   "tailwindCSS.enable": true,
   "tailwindCSS.custom.serverPath": "/Users/alexrain/.nvm/versions/node/v16.19.0/bin/tailwindcss-language-server"
+  "snippets.ultisnips.pythonPrompt": false
 }
