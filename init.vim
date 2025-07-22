@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 if has('python3')
     silent! python3 1
 endif
@@ -21,9 +21,9 @@ let g:vim_json_syntax_conceal = 0
 set foldmethod=indent
 set foldlevel=99
 set foldenable
-
 " rowNumber
 set nu
+set rnu
 " highLight
 syntax on
 
@@ -50,9 +50,7 @@ set listchars=tab:‣\ ,trail:▫,precedes:«,extends:»
 " encoding
 set encoding=utf-8
 set hidden
-set nocp
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-set relativenumber number
 set timeoutlen=500
 set statusline+=%F
 set laststatus=2
